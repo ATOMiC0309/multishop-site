@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block main %}
+<div class="d-flex justify-content-center">
+    <h1 style="margin-top:20px;">
+        Your password has been reset!
+    </h1>
+</div>
+<div class="d-flex justify-content-center" style=" margin-bottom: 200px">
+    <a class=" btn btn-primary" href="{% url 'login' %}"><b>Login</b></a>
+</div>
+{% endblock main %}

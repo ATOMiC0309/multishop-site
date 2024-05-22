@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    {% block title %}
+
+    {% endblock title %}
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <!-- Google Web Fonts -->
+    <!-- Font Awesome -->
+    <!-- Libraries Stylesheet -->
+    <!-- Customized Bootstrap Stylesheet -->
+    {% include 'components/_styles.html' %}
+    {% block style_login_pages %}
+    {% endblock style_login_pages %}
+
+</head>
+
+<body>
+<!-- Topbar Start -->
+{% include 'components/_topbar.html' %}
+<!-- Topbar End -->
+
+{% block navbar %}
+<!-- Navbar Start -->
+{% include 'components/_navbar.html' %}
+<!-- Navbar End -->
+{% endblock navbar %}
+
+
+{% block main %}
+{% endblock main %}
+
+<!-- Footer Start -->
+{% include 'components/_footer.html' %}
+<!-- Footer End -->
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+<!-- JavaScript Libraries -->
+<!-- Contact Javascript File -->
+<!-- Template Javascript -->
+{% include 'components/_scripts.html' %}
+</body>
+
+</html>

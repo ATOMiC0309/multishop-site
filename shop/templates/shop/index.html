@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>MultiShop - Online Shop Website Template</title>
+{% endblock title %}
+{% block main %}
+
+
+<!-- Featured Start -->
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5 pb-3">
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+                <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
+                <h5 class="font-weight-semi-bold m-0">Quality Product</h5>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+                <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
+                <h5 class="font-weight-semi-bold m-0">Free Shipping</h5>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+                <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
+                <h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+                <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
+                <h5 class="font-weight-semi-bold m-0">24/7 Support</h5>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Featured End -->
+
+
+<!-- Categories Start -->
+<div class="container-fluid pt-5">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span
+            class="bg-secondary pr-3">SubCategories</span></h2>
+    <div class="row px-xl-5 pb-3">
+        {% for subcategory in subcategories %}
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+            <a class="text-decoration-none" href="">
+                <div class="cat-item d-flex align-items-center mb-4">
+                    <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                        {% if subcategory.image %}
+                        <img class="img-fluid" src="{{ subcategory.image.url }}" alt="">
+                        {% else %}
+                        <img class="img-fluid" src="https://th.bing.com/th/id/OIG4..EmVh8dfrSKJWAYGVsCm?pid=ImgGn" alt="">
+                        {% endif %}
+                    </div>
+                    <div class="flex-fill pl-3">
+                        <h6>{{ subcategory.name }}</h6>
+                        <small class="text-body">{{ subcategory.product_set.count }} Products</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- Categories End -->
+
+
+<!-- Products Start -->
+<div class="container-fluid pt-5 pb-3">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Featured Products</span>
+    </h2>
+    <div class="row px-xl-5">
+        {% for product in products %}
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+            <div class="product-item bg-light mb-4">
+                <div class="product-img position-relative overflow-hidden">
+                    {% if product.image %}
+                    <img class="img-fluid w-100" src="{{ product.image.url }}" alt="No image">
+                    {% else %}
+                    <img class="img-fluid w-100" src="https://th.bing.com/th/id/OIG4..EmVh8dfrSKJWAYGVsCm?pid=ImgGn" alt="No image">
+                    {% endif %}
+                    <div class="product-action">
+                        <a class="btn btn-outline-dark btn-square" href="{% url 'to_cart' product.pk 'add' %}"><i class="fa fa-shopping-cart"></i></a>
+                        <a class="btn btn-outline-dark btn-square" href="{% url 'detail' product.pk %}"><i class="far fa-eye"></i></a>
+                    </div>
+                </div>
+                <div class="text-center py-4">
+                    <a class="h6 text-decoration-none text-truncate" href="{% url 'detail' product.pk %}">
+                        {{ product.name }}
+                    </a>
+                    <div class="d-flex align-items-center justify-content-center mt-2">
+                        <h5>${{ product.price }}</h5>
+                        <h6 class="text-muted ml-2">
+                            <del>${{ product.price }}</del>
+                        </h6>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center mb-1">
+                        <small class="fa fa-star text-primary mr-1"></small>
+                        <small class="fa fa-star text-primary mr-1"></small>
+                        <small class="fa fa-star text-primary mr-1"></small>
+                        <small class="fa fa-star text-primary mr-1"></small>
+                        <small class="fa fa-star text-primary mr-1"></small>
+                        <small>({{ product.review_set.count }})</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- Products End -->
+
+
+<!-- Offer Start -->
+<div class="container-fluid pt-5 pb-3">
+    <div class="row px-xl-5">
+        <div class="col-md-6">
+            <div class="product-offer mb-30" style="height: 300px;">
+                <img class="img-fluid" src="{% static 'img/offer-1.jpg' %}" alt="">
+                <div class="offer-text">
+                    <h6 class="text-white text-uppercase">Save 20%</h6>
+                    <h3 class="text-white mb-3">Special Offer</h3>
+                    <a href="" class="btn btn-primary">Shop Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="product-offer mb-30" style="height: 300px;">
+                <img class="img-fluid" src="{% static 'img/offer-2.jpg' %}" alt="">
+                <div class="offer-text">
+                    <h6 class="text-white text-uppercase">Save 20%</h6>
+                    <h3 class="text-white mb-3">Special Offer</h3>
+                    <a href="" class="btn btn-primary">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Offer End -->
+
+<!-- Vendor Start -->
+<div class="container-fluid py-5">
+    <div class="row px-xl-5">
+        <div class="col">
+            <div class="owl-carousel vendor-carousel">
+                <div class="bg-light p-4">
+                    <img src="{% static 'img/vendor-1.jpg' %}" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="{% static 'img/vendor-2.jpg' %}" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="{% static 'img/vendor-3.jpg' %}" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="{% static 'img/vendor-4.jpg' %}" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="{% static 'img/vendor-5.jpg' %}" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="{% static 'img/vendor-6.jpg' %}" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="{% static 'img/vendor-7.jpg' %}" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="{% static 'img/vendor-8.jpg' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Vendor End -->
+
+{% endblock main %}
